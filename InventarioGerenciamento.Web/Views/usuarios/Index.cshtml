@@ -1,0 +1,69 @@
+﻿@model IEnumerable<InventarioGerenciamento.Web.Models.DAL.usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.u_Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_UsuarioNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_Senha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.funcao.f_Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_UsuarioNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_Senha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.funcao.f_Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.u_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.u_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.u_Id })
+        </td>
+    </tr>
+}
+
+</table>

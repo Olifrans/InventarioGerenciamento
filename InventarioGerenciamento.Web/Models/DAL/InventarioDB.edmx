@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InventarioGerenciamentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="cat_Id" />
+          </Key>
+          <Property Name="cat_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="cat_Status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="funcao">
+          <Key>
+            <PropertyRef Name="f_Id" />
+          </Key>
+          <Property Name="f_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="f_Status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="u_Id" />
+          </Key>
+          <Property Name="u_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="u_UsuarioNome" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_Senha" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="u_Telefone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="u_Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="u_Status" Type="tinyint" Nullable="false" />
+          <Property Name="u_funcaoID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__usuario__u_funca__15502E78">
+          <End Role="funcao" Type="Self.funcao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcao">
+              <PropertyRef Name="f_Id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="u_funcaoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventarioGerenciamentoModelStoreContainer">
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="funcao" EntityType="Self.funcao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__usuario__u_funca__15502E78" Association="Self.FK__usuario__u_funca__15502E78">
+            <End Role="funcao" EntitySet="funcao" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventarioGerenciamentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="cat_Id" />
+          </Key>
+          <Property Name="cat_Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cat_Status" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="funcao">
+          <Key>
+            <PropertyRef Name="f_Id" />
+          </Key>
+          <Property Name="f_Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="f_Status" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__u_funca__15502E78" FromRole="funcao" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="u_Id" />
+          </Key>
+          <Property Name="u_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_UsuarioNome" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_Senha" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_Status" Type="Byte" Nullable="false" />
+          <Property Name="u_funcaoID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="funcao" Relationship="Self.FK__usuario__u_funca__15502E78" FromRole="usuario" ToRole="funcao" />
+        </EntityType>
+        <Association Name="FK__usuario__u_funca__15502E78">
+          <End Role="funcao" Type="Self.funcao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcao">
+              <PropertyRef Name="f_Id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="u_funcaoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventarioGerenciamentoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="funcao" EntityType="Self.funcao" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__usuario__u_funca__15502E78" Association="Self.FK__usuario__u_funca__15502E78">
+            <End Role="funcao" EntitySet="funcao" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventarioGerenciamentoModelStoreContainer" CdmEntityContainer="InventarioGerenciamentoEntities">
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="InventarioGerenciamentoModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="cat_Id" ColumnName="cat_Id" />
+                <ScalarProperty Name="cat_Nome" ColumnName="cat_Nome" />
+                <ScalarProperty Name="cat_Status" ColumnName="cat_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcao">
+            <EntityTypeMapping TypeName="InventarioGerenciamentoModel.funcao">
+              <MappingFragment StoreEntitySet="funcao">
+                <ScalarProperty Name="f_Id" ColumnName="f_Id" />
+                <ScalarProperty Name="f_Nome" ColumnName="f_Nome" />
+                <ScalarProperty Name="f_Status" ColumnName="f_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="InventarioGerenciamentoModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="u_Id" ColumnName="u_Id" />
+                <ScalarProperty Name="u_Nome" ColumnName="u_Nome" />
+                <ScalarProperty Name="u_UsuarioNome" ColumnName="u_UsuarioNome" />
+                <ScalarProperty Name="u_Senha" ColumnName="u_Senha" />
+                <ScalarProperty Name="u_Telefone" ColumnName="u_Telefone" />
+                <ScalarProperty Name="u_Email" ColumnName="u_Email" />
+                <ScalarProperty Name="u_Status" ColumnName="u_Status" />
+                <ScalarProperty Name="u_funcaoID" ColumnName="u_funcaoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
