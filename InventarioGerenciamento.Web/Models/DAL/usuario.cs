@@ -19,11 +19,11 @@ namespace InventarioGerenciamento.Web.Models.DAL
         [Key]
         public int u_Id { get; set; }
 
-        [Display(Name ="Nome")]
+        [Display(Name ="Nome do Usuario")]
         [Required(ErrorMessage ="*")]
         public string u_Nome { get; set; }
 
-        [Display(Name = "Usuario Nome")]
+        [Display(Name = "Usuario Login")]
         [Required(ErrorMessage = "*")]
         public string u_UsuarioNome { get; set; }
 
@@ -32,7 +32,7 @@ namespace InventarioGerenciamento.Web.Models.DAL
         [DataType(DataType.Password)]
         public string u_Senha { get; set; }
 
-        [Display(Name = "telefone")]
+        [Display(Name = "Telefone")]
         [Required(ErrorMessage = "*")]
         public string u_Telefone { get; set; }
 
@@ -40,11 +40,12 @@ namespace InventarioGerenciamento.Web.Models.DAL
         [Required(ErrorMessage = "*")]
         public string u_Email { get; set; }
 
-        [Display(Name = "Status")]
+
+        [Display(Name = "Status do Usuario")]
         [Required(ErrorMessage = "*")]
         public byte u_Status { get; set; }
 
-        [Display(Name = "Função")]
+        [Display(Name = "Função do Usuario")]
         public byte u_funcaoID { get; set; }
 
         public virtual funcao funcao { get; set; }

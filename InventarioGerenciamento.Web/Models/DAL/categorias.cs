@@ -11,11 +11,19 @@ namespace InventarioGerenciamento.Web.Models.DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class categorias
     {
+        [Key]
         public byte cat_Id { get; set; }
+
+        [Display(Name = "Nome da Categoria")]
+        [Required(ErrorMessage = "*")]
         public string cat_Nome { get; set; }
+
+        [Display(Name = "Status da Categoria")]
+        [Required(ErrorMessage = "*")]
         public byte cat_Status { get; set; }
     }
 }

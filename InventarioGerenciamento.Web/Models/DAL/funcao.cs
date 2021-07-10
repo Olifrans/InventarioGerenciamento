@@ -23,10 +23,12 @@ namespace InventarioGerenciamento.Web.Models.DAL
     
         [Key]
         public byte f_Id { get; set; }
-        [Display(Name = "Funçao")]
+
+        [Display(Name = "Nome da Funçao")]
         [Required(ErrorMessage = "*")]
         public string f_Nome { get; set; }
-        [Display(Name = "Status")]
+
+        [Display(Name = "Status da Funçao")]
         [Required(ErrorMessage = "*")]
         public byte f_Status { get; set; }
     
